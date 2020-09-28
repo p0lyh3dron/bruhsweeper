@@ -28,6 +28,7 @@ config
 		{
 			"$ROOT_DIR$/inc/shared"
 			"$ROOT_DIR$/SDL2/include" [$WINDOWS$]
+			"/usr/include/SDL2"	  [$POSIX$]
 		}
 		
 		options [$WINDOWS$]
