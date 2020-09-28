@@ -41,7 +41,8 @@ int main(int argc, char* argv[])
     SDL_Quit();
 
     MinesweeperGame m;
-    game_init( &m, 10, 10, 10 );
+    game_init( &m, 10, 10, 10, NULL );
+    game_printf( &m );
     game_delete( &m );
     
     return 0;
