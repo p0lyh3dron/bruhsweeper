@@ -1,0 +1,50 @@
+macro PROJECT_NAME "bruhsweeper"
+
+macro PLAT_DIR "win"    [$WINDOWS$]
+macro PLAT_DIR "linux"  [$LINUX$]
+
+config
+{
+	general
+	{
+		out_name "bruhsweeper"
+		out_dir "$ROOT_DIR$/out/$PLATFORM$"
+		build_dir "$ROOT_DIR$/obj/$PLATFORM$"
+		
+		config_type "application"
+	}
+	
+	compile
+	{
+		inc_dirs
+		{
+			"$ROOT_DIR$/inc/shared"
+			"$ROOT_DIR$/SDL2/include" [$WINDOWS$]
+		}
+	}
+	
+	link
+	{
+		lib_dirs
+		{
+			"$ROOT_DIR$/SDL2/lib/x64" [$WINDOWS$]
+		}
+		
+		libs { "SDL2" }
+	}
+}
+
+files
+{
+	folder "Source Files"
+	{
+		"$ROOT_DIR$/src/shared/*.cpp"
+	}
+	
+	folder "Header Files"
+	{
+		"$ROOT_DIR$/inc/shared/*.h"
+	}
+}
+
+
