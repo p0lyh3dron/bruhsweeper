@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "SDL.h"
 
+#include "../../inc/shared/minesweeper.h"
 
 int main(int argc, char* argv[])
 {
@@ -29,6 +30,7 @@ int main(int argc, char* argv[])
     bool running = true;
     while (running)
     {
+	    running = false;
         while (SDL_PollEvent(&e))
         {
         }
@@ -37,6 +39,11 @@ int main(int argc, char* argv[])
     SDL_DestroyWindow(window);
 
     SDL_Quit();
+
+    MinesweeperGame m;
+    game_init( &m, 10, 10, 10 );
+    game_delete( &m );
+    
     return 0;
 }
 
