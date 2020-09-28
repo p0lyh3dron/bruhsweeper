@@ -16,7 +16,7 @@ config
 		
 		config_type "application"
 		
-		compiler "msvc_120" [$MSVC$]
+		compiler "msvc_142" [$MSVC$]
 		compiler "clang-cl" [$LLVM$]
 		
 		compiler "g++" [$POSIX$]
@@ -45,7 +45,7 @@ config
 			"$ROOT_DIR$/SDL2/lib" [$WINDOWS$]
 		}
 		
-		libs { "SDL2" }
+		libs { "legacy_stdio_definitions.lib" [$WINDOWS$] "SDL2" }
 	}
 }
 
