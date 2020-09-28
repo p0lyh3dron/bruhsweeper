@@ -3,15 +3,23 @@ macro PROJECT_NAME "bruhsweeper"
 macro PLAT_DIR "win"    [$WINDOWS$]
 macro PLAT_DIR "linux"  [$LINUX$]
 
+macro MSVC "1" [$WINDOWS$]
+// macro LLVM "1" [$WINDOWS$ && !$MSVC$]
+
 config
 {
 	general
 	{
 		out_name "bruhsweeper"
-		out_dir "$ROOT_DIR$/out/$PLATFORM$"
-		build_dir "$ROOT_DIR$/obj/$PLATFORM$"
+		out_dir "$ROOT_DIR$/out/$PLAT_DIR$"
+		build_dir "$ROOT_DIR$/obj/$PLAT_DIR$"
 		
 		config_type "application"
+		
+		compiler "msvc_120" [$MSVC$]
+		compiler "clang-cl" [$LLVM$]
+		
+		compiler "g++" [$POSIX$]
 	}
 	
 	compile
@@ -21,13 +29,19 @@ config
 			"$ROOT_DIR$/inc/shared"
 			"$ROOT_DIR$/SDL2/include" [$WINDOWS$]
 		}
+		
+		options [$WINDOWS$]
+		{
+			"/Od" "/MTd" "/ZI"  [$DEBUG$]
+			"/O2" "/MT"         [$RELEASE$]
+		}
 	}
 	
 	link
 	{
 		lib_dirs
 		{
-			"$ROOT_DIR$/SDL2/lib/x64" [$WINDOWS$]
+			"$ROOT_DIR$/SDL2/lib" [$WINDOWS$]
 		}
 		
 		libs { "SDL2" }
