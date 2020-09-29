@@ -17,6 +17,7 @@ typedef struct
 {
 	int isBomb;
 	TileState state;
+	unsigned int adjacentMines;
 }MinesweeperTile;
 
 typedef struct
@@ -31,13 +32,15 @@ typedef struct
 		unsigned int intSeed;
 		char* strSeed;
 	};
-	MinesweeperTile* tiles;
+	MinesweeperTile** tiles;
 	GameState state;
 }MinesweeperGame;
 
 void tiles_init( MinesweeperGame* game );
 
 void game_init( MinesweeperGame* game, unsigned int width, unsigned int height, unsigned int mineCount, char* seed );
+
+void calc_adjacent_mines( MinesweeperGame* game );
 
 void get_tile_location( MinesweeperGame* game, unsigned int x, unsigned int y );
 
